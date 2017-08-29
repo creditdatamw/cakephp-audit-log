@@ -11,17 +11,19 @@ trait CurrentUserTrait
         $session = $request->session();
         $username = $session->read('Auth.User.username');
 
-        if ($session->check('Auditable.auditDescription')) {
-            $description = $session->consume('Auditable.auditDescription');
-        } else {
-            $description = h(sprintf('Action by %s', $username));
-        }
-
         return [
             'id' => $username,
             'ip' => $request->env('REMOTE_ADDR'),
             'url' => $request->here(),
-            'description' => $description,
+            'description' => h(sprintf('Action by %s', $username)),
         ];
+    }
+
+    public function getDeleteEventDescription() {
+        $description = Request::createFromGlobals()->consume('Auditable.auditDescription');
+        if (!$description) {
+            return h(sprintf('Action by %s', $username));
+        }
+        return $description;
     }
 }
