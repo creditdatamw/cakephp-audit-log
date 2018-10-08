@@ -1,6 +1,6 @@
 # Audit Log Plugin
 
-A logging plugin for [CakePHP 3](http://cakephp.org). The included `AuditableBehavior`  creates an audit history for each instance of a model to which it's attached.
+A logging plugin for [CakePHP](http://cakephp.org). The included `AuditableBehavior`  creates an audit history for each instance of a model to which it's attached.
 
 The behavior tracks changes on two levels. It takes a snapshot of the fully hydrated object _after_ a change is complete and it also records each individual change in the case of an update action.
 
@@ -14,6 +14,8 @@ The behavior tracks changes on two levels. It takes a snapshot of the fully hydr
 ## Installation
 
 ### Composer
+
+**NOTE**: The plugin supports CakePHP 3.6+ since version 1.2.0 (see Git tag 1.1.0), for support for CakePHP 3 versions prior to 3.6, use the version under Git tag 1.1.0.
 
 ```
   $ composer install creditdatamw/cakephp-audit-log
@@ -33,15 +35,10 @@ In your application's `bootstrap.php` (ie src/config/bootstrap.php) add the foll
 Before you can use the plugin you need to have the tables for storing revisions (`AuditLogs`) and deltas (`AuditLogDeltas`).
 To create the tables you can use the CakePHP 3.0 Migrations shell. Here is how:
 
-1. Copy the migrations from `/path/to/plugin/config/Migrations` to your `src/config/Migrations/` directory
-   
-> If you installed via composer you need to look at `vendor/creditdatamw/cakephp-audit-log/config/Migrations`, if you installed the plugin manually you should look under `plugins/AuditLog/config/Migrations`
-   
-2. run the migrations with the following command
+```
+  $ bin/cake migrations migrate -p AuditLog
+```
 
-```
-  $ bin/cake migrations migrate
-```
 Make sure you have privileges to create tables in your database otherwise this probably won't work ;)
 
 ## Usage
