@@ -33,12 +33,12 @@
     "composer/installers":"*",
     "php": ">=5.6.0",
     "cakephp/cakephp": "~3.6",
-    "friendsofcake/search":"dev-master",
     "friendsofcake/crud":"~4.0",
     "phpspec/php-diff":"dev-master"
   },
   "require-dev": {
-    "phpunit/phpunit": "*"
+    "phpunit/phpunit": "*",
+    "friendsofcake/search": "5.3.2"
   },
   "autoload": {
       "psr-4": {
