@@ -7,14 +7,11 @@ trait CurrentUserTrait
 {
     public function currentUser()
     {
-        $request = ServerRequestFactory::fromGlobals();
-        $session = $request->getSession();
-        $username = $session->read('Auth.User.username');
-
+        $username = $_SESSION['Auth']['User']['username'];
         return [
             'id' => $username,
-            'ip' => $request->getEnv('REMOTE_ADDR'),
-            'url' => $request->getAttribute('here'),
+            'ip' => $_SERVER['REMOTE_ADDR'],
+            'url' => $_SERVER['REQUEST_URI'],
             'description' => h(sprintf('Action by %s', $username)),
         ];
     }
