@@ -1,13 +1,14 @@
 <?php
+
 namespace AuditLog\Model\Table;
 
 use Cake\Http\ServerRequestFactory;
 
-trait CurrentUserTrait 
+trait CurrentUserTrait
 {
     public function currentUser()
     {
-        $username = $_SESSION['Auth']['User']['username'];
+        $username = isset($_SESSION) ? $_SESSION['Auth']['User']['username'] : '';
         return [
             'id' => $username,
             'ip' => $_SERVER['REMOTE_ADDR'],
@@ -16,7 +17,8 @@ trait CurrentUserTrait
         ];
     }
 
-    public function getDeleteEventDescription() {
+    public function getDeleteEventDescription()
+    {
         $session = ServerRequestFactory::fromGlobals()->getSession();
         $description = $session->consume('Auditable.auditDescription');
         if (!$description) {
