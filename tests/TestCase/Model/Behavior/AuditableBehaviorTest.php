@@ -30,7 +30,7 @@ class AuditableBehaviorTest extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->Articles = TableRegistry::get('Articles', [
             'className' => 'AuditLog\Test\App\Model\Table\ArticlesTable'
@@ -50,7 +50,7 @@ class AuditableBehaviorTest extends TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->Articles, $this->Authors);
         TableRegistry::clear();

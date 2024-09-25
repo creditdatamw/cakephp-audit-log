@@ -25,7 +25,7 @@ class ImplementsCurrentUser {
  */
 class CurrentUserTraitTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         // \Cake\Network\Request::createFromGlobals() expects an application configuration 
         // to be present. We lie to cake that it does, here.. ;)
